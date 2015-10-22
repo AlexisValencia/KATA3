@@ -7,14 +7,18 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 
-
 public class HistogramaDisplay extends ApplicationFrame {
+    
+    private final Histogram<String> histo;
 
-    public HistogramaDisplay(){
-        super ("HISTOGRAMA");
-        setContentPane(createPanel ());
+    public HistogramaDisplay(Histogram<String> histo) {
+        super("HISTOGRAMA");
+        this.histo = histo;
+        setContentPane(createPanel());
         pack();
     }
+
+
     
     private ChartPanel createPanel() {
          ChartPanel chartPanel = new ChartPanel(createChart (createDataset()));
@@ -37,6 +41,13 @@ public class HistogramaDisplay extends ApplicationFrame {
     private DefaultCategoryDataset createDataset() {
         
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        
+        for(String key : histo.keySet()){
+            dataset.addValue(histo.get(key),"", key);
+        }
+        
+        
+        
         dataset.addValue(10, "", "gmail.com");
         dataset.addValue(7, "", "ulpgc.es");
         dataset.addValue(4, "", "ull.es");
