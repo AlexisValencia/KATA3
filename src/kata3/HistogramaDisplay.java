@@ -1,4 +1,3 @@
-
 package kata3;
 import java.awt.Dimension;
 import org.jfree.chart.ChartFactory;
